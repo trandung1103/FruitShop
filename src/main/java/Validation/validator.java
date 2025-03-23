@@ -24,22 +24,26 @@ public class validator {
     }
 
     //check user input number limit
-    public   int checkInputIntLimit(int min, int max) {
-        //loop until user input correct
+    public int checkInputIntLimit(int min, int max) {
         while (true) {
             try {
+                if (!in.hasNextLine()) {
+                    System.err.println("No input detected.");
+                    return min; // Trả về giá trị mặc định để tránh đứng máy
+                }
                 int result = Integer.parseInt(in.nextLine().trim());
                 if (result < min || result > max) {
                     throw new NumberFormatException();
-
                 }
                 return result;
             } catch (NumberFormatException e) {
-                System.err.println("Please input number in rage [" + min + ", " + max + "]");
+                System.out.println("DEBUG: Min=" + min + ", Max=" + max);
+                System.err.println("Please input a number in range [" + min + ", " + max + "]");
                 System.out.print("Enter again: ");
             }
         }
     }
+    
 
     //check user input string
     public   String checkInputString() {
@@ -114,12 +118,13 @@ public class validator {
     }
 
     //check item exist or not
-    public   boolean checkItemExist(ArrayList<Order> listOrder, String id) {
+    public boolean checkItemExist(ArrayList<Order> listOrder, String id) {
         for (Order order : listOrder) {
             if (order.getFruitId().equalsIgnoreCase(id)) {
-                return false;
+                return true;  // Nếu item tồn tại, trả về TRUE
             }
         }
-        return true;   
+        return false;  // Nếu không tồn tại, trả về FALSE
     }
+    
 }

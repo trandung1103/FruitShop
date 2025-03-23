@@ -10,6 +10,9 @@ public class ValidatorMock extends validator {
     public void addInput(String input) {
         inputQueue.add(input);
     }
+    public void addInt(int input) {
+        inputQueue.add(String.valueOf(input));
+    }
 
     // Ghi đè checkInputString() để lấy dữ liệu từ danh sách thay vì Scanner
     @Override
