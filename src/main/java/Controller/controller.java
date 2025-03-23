@@ -94,13 +94,19 @@ public class controller {
     public void shopping(ArrayList<Fruit> listFruit, HashMap<String, ArrayList<Order>> orderList) {
         if (listFruit.isEmpty()) {
             System.err.println("No item in shop ");
+            return;
         }
         ArrayList<Order> listOrder = new ArrayList<>();
         while (true) {
             displayListFruit(listFruit);
             System.out.print("Enter item: ");
             int item = valid.checkInputIntLimit(1, listFruit.size());
+            System.out.println("User selected item: " + item);
             Fruit fruit = getFruitByItem(listFruit, item);
+            if (fruit == null) {
+                System.err.println("Invalid item selection. Please try again.");
+                continue;
+            }
             System.out.print("Enter quantity: ");
             int quantity = valid.checkInputIntLimit(1, fruit.getQuantity());
             fruit.setQuantity(fruit.getQuantity()-quantity);

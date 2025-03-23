@@ -15,7 +15,13 @@ import java.util.Scanner;
  */
 public class validator {
 
-    private   final Scanner in = new Scanner(System.in);
+    private Scanner in ;
+    public validator(Scanner scanner) {
+        this.in = scanner;
+    }
+    public validator() {
+        this.in = new Scanner(System.in);
+    }
 
     //check user input number limit
     public   int checkInputIntLimit(int min, int max) {
